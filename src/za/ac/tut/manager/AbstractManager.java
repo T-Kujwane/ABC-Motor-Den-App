@@ -12,12 +12,12 @@ import java.sql.*;
 public abstract class AbstractManager implements ManagerInterface{
     private final Connection connection;
     
-    public AbstractManager(String url, String userName, String password) throws ClassNotFoundException, SQLException{
+    protected AbstractManager(String url, String userName, String password) throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         this.connection = DriverManager.getConnection(url, userName, password);
     }
     
-    public Connection getConnection(){
+    protected Connection getConnection(){
         return this.connection;
     }
     
