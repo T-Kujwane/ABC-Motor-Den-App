@@ -11,6 +11,7 @@ import java.sql.*;
  */
 public abstract class AbstractManager implements ManagerInterface{
     private final Connection connection;
+    private volatile PreparedStatement statement;
     
     protected AbstractManager(String url, String userName, String password) throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -19,6 +20,14 @@ public abstract class AbstractManager implements ManagerInterface{
     
     protected Connection getConnection(){
         return this.connection;
+    }
+    
+    protected PreparedStatement getPreparedStatement(){
+        return this.statement;
+    }
+    
+    protected void setPreparedStatement(PreparedStatement preparedStatement){
+        this.statement = preparedStatement;
     }
     
 }
